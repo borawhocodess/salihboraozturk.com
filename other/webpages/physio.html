@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>physio</title>
+
+    <link rel="stylesheet" href="/other/stylesheets/style.css">
+    <style>
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        table {
+            table-layout: fixed;
+            border-collapse: collapse;
+            font-size: 10px;
+            width: 536px;
+        }
+
+        th, td {
+            box-sizing: border-box;
+            width: 72px;
+            height: 64px;
+            border: 1px solid;
+            padding: 4px;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+
+        mark {
+            background: cyan;
+        }
+
+        span.num {
+            color: cyan;
+        }
+
+        mark.blue {
+            background: yellow;
+        }
+
+        mark.today {
+            background: lavender;
+        }
+
+        tr:not(:first-child) > *:nth-child(7), tr:not(:first-child) > *:nth-child(8) {
+            background: #f4f4f4;
+        }
+
+        tr > *:first-child {
+            width: 32px;
+            border: none;
+            vertical-align: middle;
+        }
+
+        tr:first-child > * {
+            height: auto;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>physio</h1>
+
+    <p>supplementary stuff for my threapie at <a href="https://www.samfit-physiotherapie.de">samfit</a><br>thank you anna :)</p>
+
+    <h2>images</h2>
+
+    <ul>
+        <li><a href="/other/images/falkigym1.jpeg">falkigym1.jpeg</a></li>
+        <li><a href="/other/images/falkigym2.jpeg">falkigym2.jpeg</a></li>
+    </ul>
+
+    <h2>calendar</h2>
+
+    <div style="display: inline-block; padding-right: 24px">
+        <table>
+            <tr>
+                <th></th>
+                <th>mon</th>
+                <th>tue</th>
+                <th>wed</th>
+                <th>thu</th>
+                <th>fri</th>
+                <th>sat</th>
+                <th>sun</th>
+            </tr>
+            <tr>
+                <th>27</th>
+                <td></td>
+                <td>schwimmen<br>workout</td>
+                <td>tempotraining</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>lavender 5k</td>
+            </tr>
+            <tr>
+                <th>28</th>
+                <td></td>
+                <td>orthoteam<br>samfit</td>
+                <td>tempotraining</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>29</th>
+                <td>mri</td>
+                <td>orthoteam<br><mark>samfit</mark> <span class="num">1</span></td>
+                <td><mark class="blue">gym</mark></td>
+                <td>tabletennis</td>
+                <td>laufen</td>
+                <td><mark class="blue">gym</mark></td>
+                <td>scooter<br>tabletennis<br>volleyball<br>football</td>
+            </tr>
+            <tr>
+                <th>30</th>
+                <td></td>
+                <td>orthoteam<br><mark>samfit</mark> <span class="num">2</span></td>
+                <td></td>
+                <td><mark class="blue">pha</mark> + core</td>
+                <td></td>
+                <td><mark class="blue">pha</mark> + core</td>
+                <td><mark class="blue">pha</mark><br>laufen 3k<br>basket</td>
+            </tr>
+            <tr>
+                <th>31</th>
+                <td></td>
+                <td>orthoteam</td>
+                <td><mark class="blue">pha</mark><br><mark>samfit</mark> <span class="num">3</span></td>
+                <td><mark class="blue">pha</mark> + core</td>
+                <td><mark class="blue">pha</mark><br>laufen<br>volleyball</td>
+                <td>dance</td>
+                <td>laufen<br>dance</td>
+            </tr>
+            <tr>
+                <th>32</th>
+                <td>wandern</td>
+                <td>wandern<br><mark class="blue">pha</mark> + core</td>
+                <td><mark>samfit</mark> <span class="num">4</span><br><mark class="blue">pha</mark></td>
+                <td><mark class="blue">pha</mark> + core</td>
+                <td><mark>samfit</mark> <span class="num">5</span></td>
+                <td>cleaning</td>
+                <td><mark class="blue">pha</mark></td>
+            </tr>
+            <tr>
+                <th>33</th>
+                <td><mark class="blue">pha</mark> + workout</td>
+                <td></td>
+                <td><mark>samfit</mark> <span class="num">6</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>34</th>
+                <td></td>
+                <td></td>
+                <td><mark>samfit</mark> <span class="num">7</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>35</th>
+                <td><mark>samfit</mark> <span class="num">8</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>36</th>
+                <td><mark>samfit</mark> <span class="num">9</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <ul>
+        <li><mark>termin</mark></li>
+        <li><mark class="blue">physiohausaufgabe</mark></li>
+        <li><mark class="today">heute</mark></li>
+    </ul>
+
+    <footer>&copy; 2026 sbo</footer>
+
+    <script>
+        var now = new Date();
+        var day = (now.getDay() + 6) % 7;
+
+        var thursday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - day + 3);
+        var firstThursday = new Date(thursday.getFullYear(), 0, 4);
+        firstThursday.setDate(firstThursday.getDate() - ((firstThursday.getDay() + 6) % 7) + 3);
+
+        var week = 1 + Math.round((thursday - firstThursday) / 604800000);
+
+        var rows = document.querySelectorAll("table tr");
+
+        for (var i = 1; i < rows.length; i++) {
+            if (rows[i].children[0].textContent == week) {
+                rows[i].children[day + 1].style.background = "lavender";
+            }
+        }
+    </script>
+
+</body>
+</html>
