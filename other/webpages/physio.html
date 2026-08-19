@@ -31,6 +31,10 @@
             white-space: nowrap;
         }
 
+        svg.gewicht {
+            font-size: 10px;
+        }
+
         body > ul {
             display: inline-block;
             padding-right: 24px;
@@ -209,6 +213,12 @@
         <li><mark class="today">heute</mark></li>
     </ul>
 
+    <h2>gewicht</h2>
+
+    <div style="display: inline-block; padding-right: 24px">
+        <svg class="gewicht" id="gewicht" width="536" height="200"></svg>
+    </div>
+
     <h2>tagebuch</h2>
 
     <h3><mark>2026-08-19 termin 7</mark></h3>
@@ -288,6 +298,115 @@
     </ul>
 
     <footer>&copy; 2026 sbo</footer>
+
+    <script>
+        var gewicht = [
+            ["2026-08-19", 75, 75.5, null],
+            ["2026-08-24", null, null, 74.5],
+            ["2026-08-31", null, null, 74]
+        ];
+
+        var svg = document.getElementById("gewicht");
+
+        var width = 536;
+        var height = 200;
+        var padLeft = 32;
+        var padRight = 48;
+        var padTop = 12;
+        var padBottom = 24;
+
+        var values = [];
+
+        for (var i = 0; i < gewicht.length; i++) {
+            for (var j = 1; j < gewicht[i].length; j++) {
+                if (gewicht[i][j] != null) values.push(gewicht[i][j]);
+            }
+        }
+
+        var low = Math.floor(Math.min.apply(null, values) - 1);
+        var high = Math.ceil(Math.max.apply(null, values) + 1);
+
+        function px(index) {
+            return padLeft + (index + 0.5) / gewicht.length * (width - padLeft - padRight);
+        }
+
+        function py(kilo) {
+            return padTop + (high - kilo) / (high - low) * (height - padTop - padBottom);
+        }
+
+        function draw(name, attrs, text) {
+            var node = document.createElementNS("http://www.w3.org/2000/svg", name);
+
+            for (var key in attrs) node.setAttribute(key, attrs[key]);
+            if (text != null) node.textContent = text;
+
+            svg.appendChild(node);
+        }
+
+        for (var kilo = low; kilo <= high; kilo++) {
+            draw("line", { x1: padLeft, y1: py(kilo), x2: width - padRight, y2: py(kilo), stroke: "#ddd" });
+            draw("text", { x: padLeft - 6, y: py(kilo) + 3, "text-anchor": "end" }, kilo);
+        }
+
+        for (var i = 0; i < gewicht.length; i++) {
+            draw("text", { x: px(i), y: height - 8, "text-anchor": "middle" }, gewicht[i][0]);
+        }
+
+        function points(column) {
+            var list = [];
+
+            for (var i = 0; i < gewicht.length; i++) {
+                if (gewicht[i][column] != null) list.push([px(i), py(gewicht[i][column])]);
+            }
+
+            return list;
+        }
+
+        var series = [
+            { column: 1, color: "cyan", border: "black", shape: "circle", dash: "none", hollow: false, from: null },
+            { column: 2, color: "black", border: "black", shape: "house", dash: "none", hollow: false, from: null },
+            { column: 3, color: "cyan", border: "cyan", shape: "circle", dash: "3 3", hollow: true, from: 1 }
+        ];
+
+        series.forEach(function (line) {
+            var list = points(line.column);
+
+            if (list.length == 0) return;
+
+            var path = list;
+
+            if (line.from != null) {
+                var start = points(line.from);
+
+                if (start.length > 0) path = [start[start.length - 1]].concat(list);
+            }
+
+            draw("polyline", {
+                points: path.map(function (point) { return point.join(","); }).join(" "),
+                fill: "none",
+                stroke: line.color,
+                "stroke-dasharray": line.dash
+            });
+
+            list.forEach(function (point) {
+                var fill = line.hollow ? "white" : line.color;
+
+                if (line.shape == "house") {
+                    var house = [[0, -3], [2.5, -0.5], [2.5, 2.5], [-2.5, 2.5], [-2.5, -0.5]];
+
+                    draw("polygon", {
+                        points: house.map(function (corner) {
+                            return (point[0] + corner[0]) + "," + (point[1] + corner[1]);
+                        }).join(" "),
+                        fill: fill,
+                        stroke: line.border
+                    });
+                } else {
+                    draw("circle", { cx: point[0], cy: point[1], r: 2.5, fill: fill, stroke: line.border });
+                }
+            });
+        });
+    </script>
 
     <script>
         var now = new Date();
