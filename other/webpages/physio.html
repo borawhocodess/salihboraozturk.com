@@ -216,7 +216,7 @@
     <h2>gewicht</h2>
 
     <div style="display: inline-block; padding-right: 24px">
-        <svg class="gewicht" id="gewicht" width="536" height="200"></svg>
+        <svg class="gewicht" id="gewicht" width="536" height="240"></svg>
     </div>
 
     <h2>tagebuch</h2>
@@ -309,11 +309,11 @@
         var svg = document.getElementById("gewicht");
 
         var width = 536;
-        var height = 200;
+        var height = 240;
         var padLeft = 32;
         var padRight = 48;
         var padTop = 12;
-        var padBottom = 24;
+        var padBottom = 64;
 
         var values = [];
 
@@ -334,13 +334,15 @@
             return padTop + (high - kilo) / (high - low) * (height - padTop - padBottom);
         }
 
-        function draw(name, attrs, text) {
+        function draw(name, attrs, text, parent) {
             var node = document.createElementNS("http://www.w3.org/2000/svg", name);
 
             for (var key in attrs) node.setAttribute(key, attrs[key]);
             if (text != null) node.textContent = text;
 
-            svg.appendChild(node);
+            (parent == null ? svg : parent).appendChild(node);
+
+            return node;
         }
 
         for (var kilo = low; kilo <= high; kilo++) {
@@ -349,7 +351,34 @@
         }
 
         for (var i = 0; i < gewicht.length; i++) {
-            draw("text", { x: px(i), y: height - 8, "text-anchor": "middle" }, gewicht[i][0]);
+            draw("text", {
+                x: px(i),
+                y: height - padBottom + 12,
+                "text-anchor": "middle"
+            }, isoWeek(gewicht[i][0]));
+
+            var dateX = px(i) + 3;
+            var dateY = height - padBottom + 20;
+
+            draw("text", {
+                x: dateX,
+                y: dateY,
+                "text-anchor": "end",
+                fill: "#999",
+                "font-size": "8px",
+                transform: "rotate(-90 " + dateX + " " + dateY + ")"
+            }, gewicht[i][0].slice(5));
+        }
+
+        function isoWeek(date) {
+            var parts = date.split("-");
+            var day = new Date(parts[0], parts[1] - 1, parts[2]);
+
+            var thursday = new Date(day.getFullYear(), day.getMonth(), day.getDate() - ((day.getDay() + 6) % 7) + 3);
+            var firstThursday = new Date(thursday.getFullYear(), 0, 4);
+            firstThursday.setDate(firstThursday.getDate() - ((firstThursday.getDay() + 6) % 7) + 3);
+
+            return 1 + Math.round((thursday - firstThursday) / 604800000);
         }
 
         function points(column) {
