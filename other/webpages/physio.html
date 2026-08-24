@@ -339,9 +339,9 @@
 
     <script>
         var gewicht = [
-            ["2026-08-19", 75, 75.5, null],
-            ["2026-08-24", 76, null, null],
-            ["2026-08-31", null, null, 74]
+            ["2026-08-19", 75, 75.5],
+            ["2026-08-24", 76, null],
+            ["2026-08-31", null, null]
         ];
 
         var svg = document.getElementById("gewicht");
@@ -431,8 +431,7 @@
 
         var series = [
             { column: 1, color: "cyan", border: "black", shape: "circle", dash: "none", hollow: false, from: null },
-            { column: 2, color: "black", border: "black", shape: "house", dash: "none", hollow: false, from: null },
-            { column: 3, color: "cyan", border: "cyan", shape: "circle", dash: "3 3", hollow: true, from: 1 }
+            { column: 2, color: "black", border: "black", shape: "house", dash: "none", hollow: false, from: null }
         ];
 
         series.forEach(function (line) {
