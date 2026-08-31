@@ -132,7 +132,7 @@
                 <td>tabletennis</td>
                 <td>laufen</td>
                 <td><mark class="blue">gym</mark></td>
-                <td>scooter<br>tabletennis<br>volleyball<br>football</td>
+                <td>scooter fall<br>tabletennis<br>volleyball<br>football</td>
             </tr>
             <tr>
                 <th>30</th>
@@ -190,7 +190,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td>bike fall</td>
                 <td></td>
                 <td></td>
             </tr>
@@ -201,6 +201,86 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>37</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>38</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>39</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>40</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><mark>samfit <span class="num">10</span></mark></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>41</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><mark>samfit <span class="num">11</span></mark></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>42</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><mark>samfit <span class="num">12</span></mark></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>43</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><mark>samfit <span class="num">13</span></mark></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>44</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><mark>samfit <span class="num">14</span></mark></td>
                 <td></td>
                 <td></td>
             </tr>
@@ -220,6 +300,24 @@
     </div>
 
     <h2>tagebuch</h2>
+
+    <h3><mark>2026-08-31 termin 9</mark></h3>
+
+    <ul>
+        <li>kilo 75.4 at samfit
+            <ul>
+                <li>kilo 76.6 at home</li>
+            </ul>
+        </li>
+        <li>1 new move homework: now moving onto loading the shoulder
+            <ul>
+                <li>back tight bend worward arms front wide straight</li>
+                <li>6x30s</li>
+                <li>if to easy move arms</li>
+            </ul>
+        </li>
+        <li>no kids</li>
+    </ul>
 
     <h3><mark>2026-08-24 termin 8</mark></h3>
 
@@ -346,7 +444,7 @@
         var gewicht = [
             ["2026-08-19", 75, 75.5],
             ["2026-08-24", 76, null],
-            ["2026-08-31", null, null]
+            ["2026-08-31", 75.4, 76.6]
         ];
 
         var svg = document.getElementById("gewicht");
@@ -435,7 +533,7 @@
         }
 
         var series = [
-            { column: 1, color: "cyan", border: "black", shape: "circle", dash: "none", hollow: false, from: null },
+            { column: 1, color: "cyan", border: "none", shape: "circle", dash: "none", hollow: false, from: null },
             { column: 2, color: "black", border: "black", shape: "house", dash: "none", hollow: false, from: null }
         ];
 
@@ -473,7 +571,7 @@
                         stroke: line.border
                     });
                 } else {
-                    draw("circle", { cx: point[0], cy: point[1], r: 2.5, fill: fill, stroke: line.border });
+                    draw("circle", { cx: point[0], cy: point[1], r: 3.5, fill: fill, stroke: line.border });
                 }
             });
         });
