@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>german</title>
+
+    <link rel="stylesheet" href="/other/stylesheets/style.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-left: 40px;
+        }
+
+        th {
+            position: relative;
+            left: -40px;
+        }
+
+        td:nth-child(1),
+        td:nth-child(2) {
+            border: 1px solid;
+        }
+
+        td:nth-child(1) {
+            width: 20ch;
+            min-width: 20ch;
+        }
+
+        td:nth-child(2) {
+            width: 32ch;
+            min-width: 32ch;
+        }
+
+        td,
+        th {
+            padding: 2px 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>german</h1>
+
+    <p>words from <a href="/threew/">threew</a> - <a href="/threew/threets.tsv">tsv</a> - <span id="count"></span></p>
+
+    <table id="words"></table>
+
+    <script>
+        fetch("/threew/threets.tsv")
+            .then(function (r) { return r.text(); })
+            .then(function (text) {
+                var lines = text.trim().split("\n").slice(1).reverse();
+                var table = document.getElementById("words");
+                var day = "";
+
+                for (var i = 0; i < lines.length; i++) {
+                    var cells = lines[i].split("\t");
+                    var date = cells[3].slice(0, 10);
+
+                    if (date != day) {
+                        day = date;
+                        var head = document.createElement("tr");
+                        var th = document.createElement("th");
+                        th.colSpan = 2;
+                        th.align = "left";
+                        th.textContent = date;
+                        head.appendChild(th);
+                        table.appendChild(head);
+                    }
+
+                    var tr = document.createElement("tr");
+
+                    for (var j = 0; j < 3; j++) {
+                        var td = document.createElement("td");
+                        td.textContent = cells[j];
+                        tr.appendChild(td);
+                    }
+
+                    table.appendChild(tr);
+                }
+
+                document.getElementById("count").textContent = lines.length + " words";
+            });
+    </script>
+
+</body>
+
+</html>
