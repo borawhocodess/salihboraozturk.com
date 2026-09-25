@@ -42,6 +42,11 @@
         th {
             padding-top: 12px;
             padding-bottom: 12px;
+            padding-left: 0;
+        }
+
+        input[type=radio] {
+            margin-right: 4px;
         }
     </style>
 </head>
@@ -52,43 +57,121 @@
 
     <p>words from <a href="/threew/">threew</a> - <a href="/threew/threets.tsv">tsv</a> - <span id="count"></span></p>
 
+    <p>
+        <input id="q" type="search" placeholder="search" size="30">
+        <br>
+        <label><input type="radio" name="mode" value="contains" checked>contains</label>
+        <label><input type="radio" name="mode" value="starts">starts</label>
+        <label><input type="radio" name="mode" value="ends">ends</label>
+    </p>
+
+    <p>
+        sort:
+        <br>
+        <label><input type="radio" name="sort" value="date" checked>date</label>
+        <label><input type="radio" name="sort" value="alpha">a-z</label>
+        <label><input type="radio" name="sort" value="rhyme">rhyme</label>
+    </p>
+
     <table id="words"></table>
 
     <script>
+        var rows = [];
+
+        function bare(word) {
+            return word.trim().toLowerCase().replace(/^(der|die|das)\s+/, "");
+        }
+
+        function ending(word) {
+            return bare(word).replace(/[^\p{L}]+$/u, "");
+        }
+
+        function reversed(s) {
+            return s.split("").reverse().join("");
+        }
+
+        function plain(s) {
+            return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase();
+        }
+
+        function matches(row, q, mode) {
+            var fields = [row.word.trim().toLowerCase(), bare(row.word), row.translation.trim().toLowerCase(), row.notes.trim().toLowerCase()];
+
+            for (var i = 0; i < fields.length; i++) {
+                if (mode == "contains" && fields[i].indexOf(q) >= 0) return true;
+                if (mode == "starts" && fields[i].startsWith(q)) return true;
+                if (mode == "ends" && fields[i].endsWith(q)) return true;
+            }
+
+            return false;
+        }
+
+        function render() {
+            var q = document.getElementById("q").value.trim().toLowerCase();
+            var mode = document.querySelector("input[name=mode]:checked").value;
+            var sort = document.querySelector("input[name=sort]:checked").value;
+            var shown = rows.filter(function (row) { return q == "" || matches(row, q, mode); });
+
+            if (sort == "alpha") {
+                shown.sort(function (a, b) { return bare(a.word).localeCompare(bare(b.word), "de"); });
+            } else if (sort == "rhyme") {
+                shown.sort(function (a, b) { return reversed(ending(a.word)).localeCompare(reversed(ending(b.word)), "de"); });
+            }
+
+            var table = document.getElementById("words");
+            var body = document.createDocumentFragment();
+            var group = null;
+
+            for (var i = 0; i < shown.length; i++) {
+                var row = shown[i];
+                var key = row.date;
+
+                if (sort == "alpha") key = plain(bare(row.word).charAt(0));
+                if (sort == "rhyme") key = "-" + ending(row.word).slice(-2);
+
+                if (key != group) {
+                    group = key;
+                    var head = document.createElement("tr");
+                    var th = document.createElement("th");
+                    th.colSpan = 2;
+                    th.align = "left";
+                    th.textContent = key;
+                    head.appendChild(th);
+                    body.appendChild(head);
+                }
+
+                var tr = document.createElement("tr");
+                var cells = [row.word, row.translation, row.notes];
+
+                for (var j = 0; j < 3; j++) {
+                    var td = document.createElement("td");
+                    td.textContent = cells[j];
+                    tr.appendChild(td);
+                }
+
+                body.appendChild(tr);
+            }
+
+            table.replaceChildren(body);
+            document.getElementById("count").textContent = (shown.length == rows.length ? "" : shown.length + " of ") + rows.length + " words";
+        }
+
         fetch("/threew/threets.tsv")
             .then(function (r) { return r.text(); })
             .then(function (text) {
                 var lines = text.trim().split("\n").slice(1).reverse();
-                var table = document.getElementById("words");
-                var day = "";
 
                 for (var i = 0; i < lines.length; i++) {
                     var cells = lines[i].split("\t");
-                    var date = cells[3].slice(0, 10);
-
-                    if (date != day) {
-                        day = date;
-                        var head = document.createElement("tr");
-                        var th = document.createElement("th");
-                        th.colSpan = 2;
-                        th.align = "left";
-                        th.textContent = date;
-                        head.appendChild(th);
-                        table.appendChild(head);
-                    }
-
-                    var tr = document.createElement("tr");
-
-                    for (var j = 0; j < 3; j++) {
-                        var td = document.createElement("td");
-                        td.textContent = cells[j];
-                        tr.appendChild(td);
-                    }
-
-                    table.appendChild(tr);
+                    rows.push({ word: cells[0], translation: cells[1], notes: cells[2], date: cells[3].slice(0, 10) });
                 }
 
-                document.getElementById("count").textContent = lines.length + " words";
+                document.getElementById("q").addEventListener("input", render);
+                document.querySelectorAll("input[type=radio]").forEach(function (input) {
+                    input.addEventListener("change", render);
+                });
+
+                render();
             });
     </script>
 
