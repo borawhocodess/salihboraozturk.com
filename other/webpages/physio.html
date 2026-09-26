@@ -56,6 +56,10 @@
             background: yellow;
         }
 
+        tr.turkey:not(:first-child) > td {
+            background: #E30A17;
+        }
+
         mark.today {
             background: lavender;
         }
@@ -214,7 +218,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr>
+            <tr class="turkey">
                 <th>38</th>
                 <td></td>
                 <td></td>
@@ -230,7 +234,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td>laufen 20k</td>
                 <td></td>
                 <td></td>
             </tr>
@@ -300,6 +304,21 @@
     </div>
 
     <h2>tagebuch</h2>
+
+    <h3>2026-09-25</h3>
+
+    <ul>
+        <li>unplanned 20k with a friend
+            <ul>
+                <li>feet
+                    <ul>
+                        <li>right: blood blister inside</li>
+                        <li>left: blister inside tendon pain outside</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
     <h3><mark>2026-08-31 termin 9</mark></h3>
 
@@ -444,7 +463,9 @@
             ["2026-08-19", 75, 75.5],
             ["2026-08-24", 76, null],
             ["2026-08-31", 75.4, 76.6],
-            ["2026-09-11", null, 76]
+            ["2026-09-11", null, 76],
+            ["2026-W38", null, null],
+            ["2026-09-26", null, 76.5]
         ];
 
         var svg = document.getElementById("gewicht");
@@ -498,6 +519,8 @@
                 "text-anchor": "middle"
             }, isoWeek(gewicht[i][0]));
 
+            if (gewicht[i][0].indexOf("W") >= 0) continue;
+
             var dateX = px(i) + 3;
             var dateY = height - padBottom + 20;
 
@@ -512,6 +535,8 @@
         }
 
         function isoWeek(date) {
+            if (date.indexOf("W") >= 0) return Number(date.split("W")[1]);
+
             var parts = date.split("-");
             var day = new Date(parts[0], parts[1] - 1, parts[2]);
 
