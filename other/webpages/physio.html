@@ -56,7 +56,7 @@
             background: yellow;
         }
 
-        tr.turkey:not(:first-child) > td {
+        tr.turkey:not(:first-child) > td, mark.turkey {
             background: rgba(227, 10, 23, 0.31);
         }
 
@@ -95,6 +95,13 @@
     </ul>
 
     <h2>kalender</h2>
+
+    <ul style="display: block">
+        <li><mark>termin</mark></li>
+        <li><mark class="blue">physiohausaufgabe</mark></li>
+        <li><mark class="today">heute</mark></li>
+        <li><mark class="turkey">türkiye</mark></li>
+    </ul>
 
     <div style="display: inline-block; padding-right: 24px">
         <table>
@@ -290,12 +297,6 @@
             </tr>
         </table>
     </div>
-
-    <ul>
-        <li><mark>termin</mark></li>
-        <li><mark class="blue">physiohausaufgabe</mark></li>
-        <li><mark class="today">heute</mark></li>
-    </ul>
 
     <h2>gewicht</h2>
 
