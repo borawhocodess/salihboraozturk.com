@@ -8,11 +8,22 @@
     <title>food</title>
 
     <link rel="stylesheet" href="/other/stylesheets/style.css">
+    <style>
+        svg {
+            font-size: 10px;
+        }
+    </style>
 </head>
 
 <body>
 
     <h1>food</h1>
+
+    <p>estimated from the log below, upper bound for kcal, lower bound for protein</p>
+
+    <svg id="kcal" width="536" height="200"></svg>
+    <br>
+    <svg id="protein" width="536" height="160"></svg>
 
     <section>
         <h2>2026-09-26</h2>
@@ -84,6 +95,85 @@
             </li>
         </ul>
     </section>
+
+    <script>
+        // date, kcal, kcal upper, protein, protein lower, km
+        var days = [
+            ["2026-09-25", 2560, 2950, 139, 120, 20]
+        ];
+
+        function chart(id, column, bound, target, unit) {
+            var svg = document.getElementById(id);
+            var width = Number(svg.getAttribute("width"));
+            var height = Number(svg.getAttribute("height"));
+            var padLeft = 40;
+            var padRight = 64;
+            var padTop = 28;
+            var padBottom = 28;
+
+            var values = [target];
+
+            for (var i = 0; i < days.length; i++) values.push(days[i][column], days[i][bound]);
+
+            var step = unit == "kcal" ? 500 : 25;
+            var low = Math.floor(Math.min.apply(null, values) / step) * step - step;
+            var high = Math.ceil(Math.max.apply(null, values) / step) * step;
+
+            function px(index) {
+                return padLeft + (index + 0.5) / days.length * (width - padLeft - padRight);
+            }
+
+            function py(value) {
+                return padTop + (high - value) / (high - low) * (height - padTop - padBottom);
+            }
+
+            function draw(name, attrs, text) {
+                var node = document.createElementNS("http://www.w3.org/2000/svg", name);
+
+                for (var key in attrs) node.setAttribute(key, attrs[key]);
+                if (text != null) node.textContent = text;
+
+                svg.appendChild(node);
+
+                return node;
+            }
+
+            for (var value = low; value <= high; value += step) {
+                draw("line", { x1: padLeft, y1: py(value), x2: width - padRight, y2: py(value), stroke: "#ddd" });
+                draw("text", { x: padLeft - 6, y: py(value) + 3, "text-anchor": "end" }, value);
+            }
+
+            draw("text", { x: 0, y: 10 }, unit);
+
+            draw("line", { x1: padLeft, y1: py(target), x2: width - padRight, y2: py(target), stroke: "#999", "stroke-dasharray": "4 3" });
+            draw("text", { x: width - padRight + 4, y: py(target) + 3, fill: "#999" }, "target " + target);
+
+            draw("polyline", {
+                points: days.map(function (day, i) { return px(i) + "," + py(day[column]); }).join(" "),
+                fill: "none",
+                stroke: "black"
+            });
+
+            for (var i = 0; i < days.length; i++) {
+                var day = days[i];
+
+                draw("text", { x: px(i), y: height - padBottom + 14, "text-anchor": "middle" }, day[0].slice(5));
+
+                draw("circle", { cx: px(i), cy: py(day[bound]), r: 3.5, fill: "white", stroke: "#999" })
+                    .appendChild(document.createElementNS("http://www.w3.org/2000/svg", "title")).textContent = (bound == 2 ? "upper " : "lower ") + day[bound] + " " + unit;
+
+                draw("circle", { cx: px(i), cy: py(day[column]), r: 3.5, fill: "black" })
+                    .appendChild(document.createElementNS("http://www.w3.org/2000/svg", "title")).textContent = day[0] + ": ~" + day[column] + " " + unit;
+
+                if (day[5] > 0 && unit == "kcal") {
+                    draw("text", { x: px(i), y: py(Math.max(day[column], day[bound])) - 8, "text-anchor": "middle" }, "run " + day[5] + "k");
+                }
+            }
+        }
+
+        chart("kcal", 1, 2, 2100, "kcal");
+        chart("protein", 3, 4, 130, "g protein");
+    </script>
 
 </body>
 
