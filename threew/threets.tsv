@@ -125,7 +125,7 @@ der Vormittag	before noon	10-12	2025-04-07 09:01:00
 der Mittag	noon	12-15	2025-04-07 09:04:00
 der Nachmittag	after noon	15-18	2025-04-07 09:07:00
 der Abend	evening	18-21	2025-04-07 09:10:00
-der Nacht	night	22-6	2025-04-07 09:13:00
+die Nacht	night	22-6	2025-04-07 09:13:00
 die Richtungsangaben	direction information	direction giving part of the sentence	2025-04-07 09:16:00
 die Türkei	Türkiye		2025-04-07 09:19:00
 die Ukraine	Ukraine		2025-04-07 09:22:00
@@ -220,7 +220,7 @@ duschen	to shower		2025-04-09 07:09:00
 kaufen	to buy		2025-04-09 07:15:00
 das Perfekt	perfect tense	to describe past actions that are completed	2025-04-09 07:18:00
 gestern	yesterday		2025-04-09 07:21:00
-das Hilfsverben	auxilary verb	die Hilsverben: haben sein werden	2025-04-09 07:24:00
+das Hilfsverb	auxilary verb	die Hilsverben: haben sein werden	2025-04-09 07:24:00
 haben	to have	für Perfekt mit den meisten Verben	2025-04-09 07:27:00
 sein	to be		2025-04-09 07:30:00
 werden	to become / will		2025-04-09 07:33:00
@@ -432,9 +432,9 @@ die Berufsorientierungskompetenz	career orientation competencies	ann sophie kurs
 steilst	steep	ella , steepest smth, trainride? in germany?	2025-04-21 07:26:00
 Himmelreich	heavenly kingdom / kingdom of heaven	trainstation mit ella , himmel: sky / heaven , reich: kingdom / empire	2025-04-21 07:26:37
 Höllental	hell valley	trainstation mit ella , we changed seats and she let me see the valley , hölle: hell , tal: valley	2025-04-21 07:29:37
-die Ziphose	zioper	ella	2025-04-21 07:30:00
+die Zipphose	zip-off trousers	ella	2025-04-21 07:30:00
 eselsbrücke	mnemonic	ella	2025-04-21 07:33:00
-fichten	pine?		2025-04-21 07:36:00
+die Fichte	spruce		2025-04-21 07:36:00
 rodbuche	tree		2025-04-21 07:39:00
 weistsnner	bj		2025-04-21 07:42:00
 raute	eskenar		2025-04-21 07:45:00
@@ -631,7 +631,7 @@ zeigen	to show	„Wegen des Films: Auf einer anderen Seite habe ich einen Kalend
 gegen	around / about	„Ich würde gerne gegen 21 Uhr anfangen zu schauen, wenn es nach dem Sonnenuntergang dunkel wird, damit wir besser sehen können.“	2025-04-28 08:15:00
 dunkel	dark	„Ich würde gerne gegen 21 Uhr anfangen zu schauen, wenn es nach dem Sonnenuntergang dunkel wird, damit wir besser sehen können.“	2025-04-28 08:18:00
 sich kümmern um	take care of (something)	„Ich kümmere mich um die Plattform.“	2025-04-28 08:21:00
-die Platform	platform	„Ich kümmere mich um die Plattform.“	2025-04-28 08:24:00
+die Plattform	platform	„Ich kümmere mich um die Plattform.“	2025-04-28 08:24:00
 der Wetterbericht	weather report	„Der Wetterbericht für die nächsten Tage sieht gut aus.“	2025-04-28 08:27:00
 aussehen	to look / appear	„Der Wetterbericht für die nächsten Tage sieht gut aus.“	2025-04-28 08:30:00
 ein bisschen	a little / a bit	„Perfekt für ein bisschen Seeplanschen :)“	2025-04-28 08:33:00
@@ -792,7 +792,7 @@ der Mut	courage / spirit		2025-05-17 10:58:51
 liege	to lie (rest position)	„Er ist müde, obwohl er den ganzen Tag im Bett gelegen hat.“	2025-05-17 11:01:51
 das Bett	bed		2025-05-17 11:04:51
 um Entschuldigung bitten  	to ask for forgiveness / to apologize	“Ich bitte um Entschuldigung”	2025-05-17 11:07:51
-der Papagai	parrot		2025-05-17 11:10:51
+der Papagei	parrot		2025-05-17 11:10:51
 der Wortschatz	vocabulary / lexicon	wort+schatz , word treasure	2025-05-17 11:13:51
 der Schatz	treasure		2025-05-17 16:20:13
 die Kunst	art	können , to be able , skill , craft	2025-05-17 16:23:13
@@ -811,7 +811,7 @@ die Figur	figure		2025-05-17 20:57:45
 der Künstler	(male) artist		2025-05-17 21:00:45
 die Künstlerin	(female) artist		2025-05-17 21:03:45
 das Material	material		2025-05-17 21:06:45
-das Stein	stone		2025-05-17 21:09:45
+der Stein	stone		2025-05-17 21:09:45
 herausarbeiten	to carve out / work out	heraus-arbeiten	2025-05-17 21:12:45
 fest	firm / solid		2025-05-17 21:15:45
 etwas bereichern	to enrich/enhance something	etwas wertvoller machen 	2025-05-17 21:18:45
@@ -863,7 +863,7 @@ sich melden	to get in touch / to report / to respond	„Melde dich gerne jederze
 jederzeit	anytime		2025-05-30 13:48:18
 unternehmen	to do / undertake	leisurely, social or adventurous	2025-05-30 13:54:18
 reden	to talk	informally , in a conversation	2025-05-30 13:57:18
-das Fall	case / situation	„Ich habe auf jeden Fall ein offenes Ohr.“  	2025-05-30 14:00:18
+der Fall	case / situation	„Ich habe auf jeden Fall ein offenes Ohr.“  	2025-05-30 14:00:18
 offen	open		2025-05-30 14:03:18
 das Ohr	ear		2025-05-30 14:06:18
 dranbleiben	to stick with it / to stay on it / persevere	„Schön, dass du an den Bananenbroten dran bleibst – sie werden deinen Eltern sicher gefallen!“	2025-05-30 14:09:18
@@ -1059,7 +1059,7 @@ Schönen Urlaub!	have a nice vacation! / beautiful vacation!	madita	2025-06-17 1
 der Mehrwortausdruck	multi-word expression / phrase	dwds - mehr+wort+ausdruck - several word expression	2025-06-18 21:11:00
 das Gummibärchen	gummy bear	ella - lokum - HARIBO - hans riegel bonn	2025-06-19 17:52:14
 die Zuckerwatte	cotton candy / sugar cotton	ella - so many things u can make with sugar	2025-06-19 17:55:14
-das Klettergrüst	climbing frame / jungle gym	ella - meal in balcony - klettern+gerüst	2025-06-19 17:58:14
+das Klettergerüst	climbing frame / jungle gym	ella - meal in balcony - klettern+gerüst	2025-06-19 17:58:14
 engagiert	committed / dedicated / engaged	ella - gym cleaning	2025-06-19 18:01:14
 regelmäßig	regularly	lena - ella - gym - regel+maßig - rule like	2025-06-19 18:04:14
 die Katze	cat	simon - cat like dive	2025-06-19 21:11:00
@@ -1179,7 +1179,7 @@ ergänzen	to complete / to add / to fill in	ganz	2025-06-22 14:41:00
 dabei	in the process / present / at it	da bei	2025-06-22 14:44:00
 alles-inklusive-urlaub	all-inclusive vacation		2025-06-22 14:47:00
 besichtigen	to visit / to tour		2025-06-22 14:50:00
-die Sehenwürdigkeit	sight / attraction	sehen+würdig+keit	2025-06-22 14:53:00
+die Sehenswürdigkeit	sight / attraction	sehen+würdig+keit	2025-06-22 14:53:00
 die Stadt	city / town		2025-06-22 14:56:00
 das Hotel	hotel		2025-06-22 15:02:00
 sondern	but rather / but instead	Nicht Tee, sondern Kaffee	2025-06-22 15:05:00
@@ -1215,7 +1215,7 @@ das Bohnenkraut	savory herb	annso - bohnen+kraut : beans herb	2025-06-24 06:04:2
 der Vogel	bird		2025-06-25 19:38:00
 die Amsel	blackbird	clemens - fat black bird	2025-06-25 19:41:00
 das Schimpfwort	swear word / insult		2025-06-25 19:44:00
-der Rundergeburtstag	round birthday	simon - 30 40 … 	2025-06-25 19:47:00
+der runde Geburtstag	round birthday	simon - 30 40 … 	2025-06-25 19:47:00
 der Nigersaurus	nigersaurus	simon - niger+saurus	2025-06-25 19:50:00
 der Haushalt	household		2025-06-25 19:53:00
 der Zungenbrecher	tongue twister	hannes	2025-06-26 19:13:00
@@ -1243,7 +1243,7 @@ der Grad	degree / level / grade /step	Temperaturgrad	2025-06-29 18:37:00
 der Rückwärtssalto	backflip	simon	2025-06-29 18:40:00
 Träum was schönes!	dream smth nice!	madita - das (et)was	2025-06-29 18:49:00
 die Träne	tear	bananenbrot mit tränen	2025-06-29 20:49:00
-der Gepäcktrager	luggage carrier	simon was holding one for his bike 	2025-06-29 20:52:00
+der Gepäckträger	luggage carrier	simon was holding one for his bike 	2025-06-29 20:52:00
 die Kiste	box	chest	2025-06-29 21:32:00
 die Heia	bed / sleep / sleepy time 	used with children	2025-06-29 21:37:00
 der Macher!	doer / maker	ella	2025-06-30 04:31:00
@@ -1317,7 +1317,7 @@ sehen	to see	siehst	2025-08-27 12:56:56
 tun	to do	tust	2025-08-27 12:59:56
 die Sterne 	stars		2025-08-30 19:39:09
 Sörschen! 	cheers	hannes	2025-08-30 19:41:00
-die Bierdecke 	beermat / coaster	max	2025-08-30 19:42:09
+der Bierdeckel	beermat / coaster	max	2025-08-30 19:42:09
 ganz genau	exactly	hannes	2025-08-30 20:54:40
 allergisch	allergic		2025-08-31 21:11:00
 der Flughafen	airport	flug+hafen	2025-08-31 21:14:00
@@ -1977,7 +1977,7 @@ die Blumen	flowers		2026-03-26 17:38:36
 die Blume	flower		2026-03-26 17:41:36
 die Schublade	cekmece		2026-03-26 17:44:36
 schleichweg	sneaky way	simon	2026-03-27 13:36:11
-das is das a und o	wichtig	simon	2026-03-27 13:39:11
+das A und O	wichtig	simon	2026-03-27 13:39:11
 rumpfkreisen	core circling	simon	2026-03-27 13:45:11
 verschärfung	change upwards	simon - tempo verschärfung	2026-03-27 13:48:11
 tauben	pigeon	simon - ratten der lüfte	2026-03-27 13:51:11
@@ -2043,7 +2043,7 @@ mukke	musik	hannes	2026-04-12 15:25:39
 auseinanderbauen		lotta	2026-04-12 21:36:00
 das Eschenholz	ash wood 	shaju 4 tram	2026-04-13 06:39:43
 der Gebärdendolmetscher 	sign language interpreter 		2026-04-13 07:44:06
-das Hippopotamus	hippopotamus 	camille - latin - river horse	2026-04-13 07:47:06
+der Hippopotamus	hippopotamus 	camille - latin - river horse	2026-04-13 07:47:06
 das Nilpferd 	hippopotamus 		2026-04-13 07:50:06
 der Auftrag 	assignment		2026-04-13 07:53:06
 anstellen 	to employ 		2026-04-13 07:56:06
@@ -2055,12 +2055,12 @@ hoch			2026-04-14 07:52:37
 das paddel			2026-04-14 07:55:37
 das surfbrett			2026-04-14 07:58:37
 das mountainbike			2026-04-14 08:01:37
-der schläager			2026-04-14 08:04:37
+der Schläger			2026-04-14 08:04:37
 der skistock			2026-04-14 08:07:37
-der voleyball			2026-04-14 08:10:37
+der Volleyball			2026-04-14 08:10:37
 die matte			2026-04-14 08:13:37
 der helm			2026-04-14 08:16:37
-die tauchenbrille			2026-04-14 08:19:37
+die Taucherbrille			2026-04-14 08:19:37
 turnen			2026-04-14 08:22:37
 tauchen			2026-04-14 08:25:37
 jubeln			2026-04-14 08:28:37
@@ -2105,7 +2105,7 @@ der Lokalmatador	local champion	sophie	2026-05-18 20:10:50
 das techtelmechtel	bumsen / rummachen	simon giulia clemens	2026-05-19 20:49:26
 teoretisch			2026-05-20 15:36:36
 das souvenir			2026-05-20 15:39:36
-das mitbringgsel			2026-05-20 15:42:36
+das Mitbringsel			2026-05-20 15:42:36
 das andenken			2026-05-20 15:45:36
 der elternbeirat			2026-05-20 15:48:36
 wiederbeschaffung	retrieval		2026-05-21 15:50:08
@@ -2216,7 +2216,7 @@ verdungstugskälte		simon clemens sophie	2026-07-13 15:28:00
 sessellüft		clemens simon sophie	2026-07-13 15:31:00
 bieten anbieten			2026-07-15 15:34:58
 ausstellung	exhibition		2026-07-15 15:37:58
-das frostschutz		clemens sophie	2026-07-16 18:37:29
+der Frostschutz		clemens sophie	2026-07-16 18:37:29
 frostschutzmittel		sophie	2026-07-16 18:40:29
 das augenbrauenpiercing		sophie	2026-07-16 18:43:29
 saufen		fritz simon	2026-07-17 18:19:41
