@@ -128,7 +128,7 @@
 
     <h2>wörter</h2>
 
-    <p>words from <a href="/threew/">threew</a> - <a href="/threew/threets.tsv">tsv</a> - <span id="count"></span></p>
+    <p>words from <a href="/threew/">threew</a> - <a href="/other/tables/threets.tsv">tsv</a> - <span id="count"></span></p>
 
     <p>
         <input id="q" type="search" placeholder="search" size="30">
@@ -229,7 +229,7 @@
             document.getElementById("count").textContent = (shown.length == rows.length ? "" : shown.length + " of ") + rows.length + " words";
         }
 
-        fetch("/threew/threets.tsv")
+        fetch("/other/tables/threets.tsv")
             .then(function (r) { return r.text(); })
             .then(function (text) {
                 var lines = text.trim().split("\n").slice(1).reverse();
