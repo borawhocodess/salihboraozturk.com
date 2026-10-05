@@ -497,7 +497,7 @@
             var high = Math.ceil(Math.max.apply(null, values) / step) * step;
 
             function px(index) {
-                return padLeft + (index + 0.5) / days.length * (width - padLeft - padRight);
+                return padLeft + (days.length - index - 0.5) / days.length * (width - padLeft - padRight);
             }
 
             function py(value) {
