@@ -35,9 +35,9 @@
 
     <p>estimated from the log below, upper bound for calories (kcal), lower bound for protein (g)</p>
 
-    <svg id="kcal" width="536" height="224"></svg>
+    <svg id="kcal" width="536" height="212"></svg>
     <br>
-    <svg id="protein" width="536" height="184"></svg>
+    <svg id="protein" width="536" height="172"></svg>
 
     <h2>log</h2>
 
@@ -486,7 +486,7 @@
             var padLeft = 40;
             var padRight = 16;
             var padTop = 28;
-            var padBottom = 52;
+            var padBottom = 40;
 
             var values = [target];
 
@@ -550,33 +550,26 @@
                 fill: "black"
             });
 
-            for (var i = 0, start = 0; i < days.length; i++) {
-                if (i + 1 < days.length && isoWeek(days[i + 1][0]) == isoWeek(days[i][0])) continue;
+            for (var i = 0; i + 1 < days.length; i++) {
+                if (isoWeek(days[i + 1][0]) == isoWeek(days[i][0])) continue;
 
-                draw("text", { x: (px(start) + px(i)) / 2, y: height - padBottom + 12, "text-anchor": "middle" }, isoWeek(days[i][0]));
+                var edge = (px(i) + px(i + 1)) / 2;
 
-                if (i + 1 < days.length) {
-                    var edge = (px(i) + px(i + 1)) / 2;
-
-                    svg.insertBefore(draw("line", { x1: edge, y1: padTop, x2: edge, y2: height - padBottom + 14, stroke: "#ddd" }), svg.firstChild);
-                }
-
-                start = i + 1;
+                svg.insertBefore(draw("line", { x1: edge, y1: padTop, x2: edge, y2: height - padBottom, stroke: "#ddd" }), svg.firstChild);
             }
 
             for (var i = 0; i < days.length; i++) {
                 var day = days[i];
 
-                var dateX = px(i) + 3;
-                var dateY = height - padBottom + 20;
+                var dateX = px(i) - 3;
+                var dateY = height - padBottom + 8;
 
                 draw("text", {
                     x: dateX,
                     y: dateY,
-                    "text-anchor": "end",
                     fill: "#999",
                     "font-size": "8px",
-                    transform: "rotate(-90 " + dateX + " " + dateY + ")"
+                    transform: "rotate(90 " + dateX + " " + dateY + ")"
                 }, day[0].slice(5));
 
                 draw("circle", { cx: px(i), cy: py(day[bound]), r: 3.5, fill: "white", stroke: "#999" })
