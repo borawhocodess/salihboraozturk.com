@@ -105,6 +105,19 @@
             border: none;
             color: #999;
         }
+
+        table.pha tr > *:nth-child(-n+3) {
+            border: none;
+        }
+
+        table.pha tr > *:first-child {
+            text-align: right;
+            color: #999;
+        }
+
+        table.pha tr > *:nth-child(2) {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -719,8 +732,8 @@
 
                 for (var i = 0; i < moves.length; i++) {
                     var row = table.insertRow();
-                    add(row, "td", ids[moves[i]]);
                     add(row, "td", moves[i]);
+                    add(row, "td", ids[moves[i]]);
 
                     for (var j = 0; j < columns.length; j++) {
                         add(row, "td", done[columns[j] + " " + moves[i]] || "");

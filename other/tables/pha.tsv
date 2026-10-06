@@ -1,5 +1,4 @@
 date	id	move	done
-sheet		warmup	
 sheet	s1	bws mobilisation	10-15
 sheet	s2	bws rotation	15 / side
 sheet	s3	serratusstütz	?
@@ -12,7 +11,6 @@ sheet	s9	armabduktion	3x10 · 1 kg
 sheet	k1	quad roll	1 min / leg
 sheet	k2	copenhagen	3x10
 sheet	k3	brücke	3x10
-2026-10-05		warmup	✓
 2026-10-05	s1	bws mobilisation	5 / leg
 2026-10-05	s2	bws rotation	5 / side
 2026-10-05	s3	serratusstütz	10
