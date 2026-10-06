@@ -78,6 +78,33 @@
             height: auto;
             border: none;
         }
+        table.pha {
+            table-layout: auto;
+            width: auto;
+        }
+
+        table.pha th, table.pha td {
+            width: auto;
+            height: auto;
+            border: 1px solid black;
+            padding: 4px 6px;
+            vertical-align: middle;
+            text-align: left;
+            font-weight: normal;
+        }
+
+        table.pha tr:not(:first-child) > *:nth-child(n) {
+            background: none;
+        }
+
+        table.pha tr:not(:first-child) > *:nth-child(3) {
+            color: #999;
+        }
+
+        table.pha tr:first-child > * {
+            border: none;
+            color: #999;
+        }
     </style>
 </head>
 
@@ -298,6 +325,12 @@
         </table>
     </div>
 
+    <h2>pha</h2>
+
+    <div style="display: inline-block; padding-right: 24px; max-width: 536px; overflow-x: auto">
+        <table class="pha" id="pha"></table>
+    </div>
+
     <h2>gewicht</h2>
 
     <div style="display: inline-block; padding-right: 24px">
@@ -311,21 +344,7 @@
     <ul>
         <li>pha
             <ul>
-                <li>brustwirbelsäulenmobilisation - 5 + 5 breaths, legs switched</li>
-                <li>bws rotation - 5 + 5, per side</li>
-                <li>serratusstütz - 10</li>
-                <li>miniband raise - 10</li>
-                <li>rudern einarmig - 10 per side, 3 kg</li>
-                <li>außenrotation in seitlage - 10 per side, 3 kg</li>
-                <li>face pulls - 10, pin at 30 kg
-                    <ul>
-                        <li>felt lighter than 30</li>
-                    </ul>
-                </li>
-                <li>armabduktion - 10, 3 kg</li>
-                <li>massage quadriceps - 1 min per leg</li>
-                <li>copenhagen - 10 per side, knee on bench</li>
-                <li>brücke - 10</li>
+                <li>face pulls pin at 30 kg felt lighter than 30</li>
             </ul>
         </li>
     </ul>
@@ -659,6 +678,55 @@
                 rows[i].children[day + 1].style.background = "lavender";
             }
         }
+    </script>
+
+    <script>
+        fetch("/other/tables/pha.tsv")
+            .then(function (r) { return r.text(); })
+            .then(function (text) {
+                var lines = text.trim().split("\n").slice(1);
+                var moves = [];
+                var ids = {};
+                var dates = [];
+                var done = {};
+
+                for (var i = 0; i < lines.length; i++) {
+                    var cells = lines[i].split("\t");
+
+                    if (moves.indexOf(cells[2]) < 0) moves.push(cells[2]);
+                    if (cells[0] != "sheet" && dates.indexOf(cells[0]) < 0) dates.push(cells[0]);
+
+                    ids[cells[2]] = cells[1];
+                    done[cells[0] + " " + cells[2]] = cells[3];
+                }
+
+                var columns = ["sheet"].concat(dates.sort().reverse());
+                var table = document.getElementById("pha");
+
+                function add(row, name, text) {
+                    var cell = document.createElement(name);
+                    cell.textContent = text;
+                    row.appendChild(cell);
+                }
+
+                var head = table.insertRow();
+                add(head, "th", "");
+                add(head, "th", "");
+
+                for (var j = 0; j < columns.length; j++) {
+                    add(head, "th", columns[j] == "sheet" ? "sheet" : columns[j].slice(5));
+                }
+
+                for (var i = 0; i < moves.length; i++) {
+                    var row = table.insertRow();
+                    add(row, "td", ids[moves[i]]);
+                    add(row, "td", moves[i]);
+
+                    for (var j = 0; j < columns.length; j++) {
+                        add(row, "td", done[columns[j] + " " + moves[i]] || "");
+                    }
+                }
+            });
     </script>
 
 </body>
