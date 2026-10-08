@@ -698,7 +698,7 @@
 
             draw("text", { x: padLeft - 6, y: py(target) + 3, "text-anchor": "end", fill: "#999" }, target);
 
-            draw("line", { x1: padLeft, y1: py(target), x2: width - padRight, y2: py(target), stroke: "#999", "stroke-dasharray": "1 3" });
+            draw("line", { x1: padLeft, y1: py(target), x2: width - padRight, y2: py(target), stroke: "#ddd", "stroke-dasharray": "1 3" });
 
             draw("polyline", {
                 points: days.map(function (day, i) { return px(i) + "," + py(day[column]); }).join(" "),
@@ -751,7 +751,7 @@
 
                 draw("line", { x1: px(i), y1: py(day[column]), x2: px(i), y2: py(day[bound]), stroke: "#999" });
 
-                draw("line", { x1: px(i) - 2, y1: py(day[bound]), x2: px(i) + 2, y2: py(day[bound]), stroke: "#999" })
+                draw("line", { x1: px(i) - 1.5, y1: py(day[bound]), x2: px(i) + 1.5, y2: py(day[bound]), stroke: "#999" })
                     .appendChild(document.createElementNS("http://www.w3.org/2000/svg", "title")).textContent = (bound == 2 ? "upper " : "lower ") + day[bound] + " " + unit;
 
                 draw("circle", { cx: px(i), cy: py(day[column]), r: 3.5, fill: "black" })
