@@ -16,6 +16,53 @@
         p {
             white-space: nowrap;
         }
+
+        table.nutrients {
+            table-layout: auto;
+            border-collapse: collapse;
+            font-size: 10px;
+            width: auto;
+        }
+
+        table.nutrients th, table.nutrients td {
+            width: auto;
+            height: auto;
+            border: 1px solid black;
+            padding: 4px 6px;
+            vertical-align: middle;
+            text-align: right;
+            font-weight: normal;
+            white-space: nowrap;
+        }
+
+        table.nutrients tr:nth-child(n+3) > *:nth-child(n) {
+            background: none;
+        }
+
+        table.nutrients tr:nth-child(n+3) > *:nth-child(3), table.nutrients tr:nth-child(n+3) > *:nth-child(4) {
+            color: #999;
+        }
+
+        table.nutrients tr:nth-child(-n+2) > * {
+            border: none;
+            color: #999;
+        }
+
+        table.nutrients tr:first-child > * {
+            color: black;
+        }
+
+        table.nutrients tr > *:first-child, table.nutrients tr > *:nth-child(3), table.nutrients tr > *:nth-child(4) {
+            border: none;
+        }
+
+        table.nutrients tr > *:first-child {
+            color: #999;
+        }
+
+        table.nutrients tr > *:nth-child(4) {
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -42,6 +89,14 @@
     <svg id="kcal" width="536" height="212"></svg>
     <br>
     <svg id="protein" width="536" height="172"></svg>
+
+    <h2>nutrients</h2>
+
+    <p>recalculated per day from the log below, ± is the uncertainty in %<br>ref is dge for men 25 to 51</p>
+
+    <div style="display: inline-block; padding-right: 24px">
+        <table class="nutrients" id="nutrients"></table>
+    </div>
 
     <h2>log</h2>
 
@@ -724,6 +779,98 @@
 
         chart("kcal", 1, 2, 2100, "kcal");
         chart("protein", 3, 4, 130, "g protein");
+    </script>
+
+    <script>
+        var nutrients = [
+            ["kcal", "kcal", "", ""],
+            ["protein_g", "protein", "g", ""],
+            ["fat_g", "fat", "g", ""],
+            ["satfat_g", "sat fat", "g", ""],
+            ["omega3_mg", "omega 3", "mg", ""],
+            ["carbs_g", "carbs", "g", ""],
+            ["sugar_g", "sugar", "g", ""],
+            ["fiber_g", "fibre", "g", "30"],
+            ["salt_g", "salt", "g", "6"],
+            ["vita_ug", "vitamin a", "µg", "850"],
+            ["vitb9_ug", "folate", "µg", "300"],
+            ["vitb12_ug", "vitamin b12", "µg", "4"],
+            ["vitc_mg", "vitamin c", "mg", "110"],
+            ["vitd_ug", "vitamin d", "µg", "20"],
+            ["vite_mg", "vitamin e", "mg", "8"],
+            ["vitk_ug", "vitamin k", "µg", "70"],
+            ["calcium_mg", "calcium", "mg", "1000"],
+            ["iron_mg", "iron", "mg", "11"],
+            ["magnesium_mg", "magnesium", "mg", "350"],
+            ["potassium_mg", "potassium", "mg", "4000"],
+            ["selenium_ug", "selenium", "µg", "70"],
+            ["zinc_mg", "zinc", "mg", "14"],
+        ];
+
+        var limits = ["salt_g"];
+
+        fetch("/other/tables/food.csv")
+            .then(function (r) { return r.text(); })
+            .then(function (text) {
+                var lines = text.trim().split(/\r?\n/);
+                var names = lines[0].split(",");
+                var rows = lines.slice(1).map(function (line) { return line.split(","); }).reverse();
+                var table = document.getElementById("nutrients");
+
+                function add(row, name, text) {
+                    var cell = document.createElement(name);
+                    cell.textContent = text;
+                    row.appendChild(cell);
+                    return cell;
+                }
+
+                function shade(cell, value, nutrient) {
+                    if (!nutrient[3]) return;
+
+                    var gap = 100 - 100 * value / nutrient[3];
+                    if (limits.indexOf(nutrient[0]) >= 0) gap = -gap;
+
+                    var strength = Math.max(0, Math.min(1, gap / 50));
+                    cell.style.background = "rgba(227, 10, 23, " + (0.6 * strength).toFixed(2) + ")";
+                }
+
+                var above = table.insertRow();
+                add(above, "th", "");
+                add(above, "th", "");
+                add(above, "th", "");
+                add(above, "th", "± %");
+
+                for (var j = 0; j < rows.length; j++) {
+                    add(above, "th", rows[j][names.indexOf("uncertainty_pct")]);
+                }
+
+                var head = table.insertRow();
+                add(head, "th", "");
+                add(head, "th", "7d avg");
+                add(head, "th", "ref");
+                add(head, "th", "");
+
+                for (var j = 0; j < rows.length; j++) {
+                    add(head, "th", rows[j][0].slice(5));
+                }
+
+                for (var i = 0; i < nutrients.length; i++) {
+                    var column = names.indexOf(nutrients[i][0]);
+                    var row = table.insertRow();
+                    add(row, "td", nutrients[i][1]);
+                    var week = rows.slice(0, 7).map(function (day) { return Number(day[column]); });
+                    var mean = week.reduce(function (a, b) { return a + b; }, 0) / week.length;
+                    var digits = (rows[0][column].split(".")[1] || "").length;
+
+                    shade(add(row, "td", mean.toFixed(digits)), mean, nutrients[i]);
+                    add(row, "td", nutrients[i][3]);
+                    add(row, "td", nutrients[i][2]);
+
+                    for (var j = 0; j < rows.length; j++) {
+                        shade(add(row, "td", rows[j][column]), rows[j][column], nutrients[i]);
+                    }
+                }
+            });
     </script>
 
     <footer>&copy; 2026 sbo</footer>
