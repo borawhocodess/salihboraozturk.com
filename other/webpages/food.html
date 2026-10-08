@@ -751,7 +751,7 @@
 
                 draw("line", { x1: px(i), y1: py(day[column]), x2: px(i), y2: py(day[bound]), stroke: "#999" });
 
-                draw("line", { x1: px(i) - 3.5, y1: py(day[bound]), x2: px(i) + 3.5, y2: py(day[bound]), stroke: "#999" })
+                draw("line", { x1: px(i) - 2.5, y1: py(day[bound]), x2: px(i) + 2.5, y2: py(day[bound]), stroke: "#999" })
                     .appendChild(document.createElementNS("http://www.w3.org/2000/svg", "title")).textContent = (bound == 2 ? "upper " : "lower ") + day[bound] + " " + unit;
 
                 draw("circle", { cx: px(i), cy: py(day[column]), r: 3.5, fill: "black" })
