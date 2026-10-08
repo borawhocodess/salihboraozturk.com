@@ -1,6 +1,12 @@
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 body {
     padding: 24px;
     line-height: 1.6;
+    white-space: nowrap;
 }
 
 footer {
