@@ -715,7 +715,7 @@
     </script>
 
     <script>
-        fetch("/other/tables/pha.tsv")
+        fetch("/other/tables/pha.tsv?v=" + Date.now())
             .then(function (r) { return r.text(); })
             .then(function (text) {
                 var lines = text.trim().split("\n").slice(1);

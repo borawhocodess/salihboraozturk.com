@@ -229,7 +229,7 @@
             document.getElementById("count").textContent = (shown.length == rows.length ? "" : shown.length + " of ") + rows.length + " words";
         }
 
-        fetch("/other/tables/threets.tsv")
+        fetch("/other/tables/threets.tsv?v=" + Date.now())
             .then(function (r) { return r.text(); })
             .then(function (text) {
                 var lines = text.trim().split("\n").slice(1).reverse();
