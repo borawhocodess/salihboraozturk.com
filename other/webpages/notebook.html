@@ -12,12 +12,154 @@
         body > section:not(:last-of-type) > *:not(:first-child) {
             margin-left: 128px;
         }
+
+        table.kalender {
+            table-layout: fixed;
+            border-collapse: collapse;
+            font-size: 10px;
+            width: 536px;
+        }
+
+        table.kalender th, table.kalender td {
+            box-sizing: border-box;
+            width: 72px;
+            height: 64px;
+            border: 1px solid;
+            padding: 4px;
+            vertical-align: top;
+        }
+
+        table.kalender tr:not(:first-child) > *:nth-child(7), table.kalender tr:not(:first-child) > *:nth-child(8) {
+            background: #f4f4f4;
+        }
+
+        table.kalender tr > *:first-child {
+            width: 32px;
+            border: none;
+            vertical-align: middle;
+        }
+
+        table.kalender tr:first-child > * {
+            height: auto;
+            border: none;
+        }
     </style>
 </head>
 
 <body>
 
     <h1>notebook</h1>
+
+    <section>
+        <h2>2026-10-15</h2>
+
+        <ul>
+            <li><a href='https://lennartpurucker.github.io/tabular-relational-ellis/'>https://lennartpurucker.github.io/tabular-relational-ellis/</a></li>
+        </ul>
+
+        <table class="kalender">
+            <tr>
+                <th></th>
+                <th>mon</th>
+                <th>tue</th>
+                <th>wed</th>
+                <th>thu</th>
+                <th>fri</th>
+                <th>sat</th>
+                <th>sun</th>
+            </tr>
+            <tr>
+                <th>42</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>announcement</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>43</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>44</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>45</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>46</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>47</th>
+                <td>poster deadline</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>48</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>49</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>50</th>
+                <td></td>
+                <td><a href='https://ellis-unconference.github.io/'>unconference</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </section>
 
     <section>
         <h2>2026-10-13</h2>
@@ -846,6 +988,25 @@
     </section>
 
     <footer>&copy; 2026 sbo</footer>
+
+    <script>
+        var now = new Date();
+        var day = (now.getDay() + 6) % 7;
+
+        var thursday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - day + 3);
+        var firstThursday = new Date(thursday.getFullYear(), 0, 4);
+        firstThursday.setDate(firstThursday.getDate() - ((firstThursday.getDay() + 6) % 7) + 3);
+
+        var week = 1 + Math.round((thursday - firstThursday) / 604800000);
+
+        var rows = document.querySelectorAll("table.kalender tr");
+
+        for (var i = 1; i < rows.length; i++) {
+            if (rows[i].children[0].textContent == week) {
+                rows[i].children[day + 1].style.background = "lavender";
+            }
+        }
+    </script>
 
 </body>
 
