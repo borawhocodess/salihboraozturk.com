@@ -144,6 +144,7 @@
                     <li>nocellara olives - a lot</li>
                     <li>lactose free milk 1.5% - 1 mug</li>
                     <li>klostergarten apple rosemary spritzer - 1 (330 ml)</li>
+                    <li>vitamin D - 25 µg</li>
                 </ul>
             </li>
             <li>snack
@@ -1042,6 +1043,7 @@
             ["2026-10-13", 2310, 2660, 121, 105, 0],
             ["2026-10-14", 2900, 3340, 146, 127, 2],
             ["2026-10-15", 3400, 3910, 122, 106, 0],
+            ["2026-10-16", 2630, 3020, 103, 90, 2],
         ];
 
         function chart(id, column, bound, target, unit) {
@@ -1193,7 +1195,7 @@
 
         var limits = ["salt_g"];
 
-        var sofar = "2026-10-16";
+        var sofar = "2026-10-17";
 
         fetch("/other/tables/food.csv?v=" + Date.now())
             .then(function (r) { return r.text(); })
@@ -1247,7 +1249,7 @@
                     add(row, "td", nutrients[i][1]);
                     var week = done.slice(0, 7).map(function (day) { return Number(day[column]); });
                     var mean = week.reduce(function (a, b) { return a + b; }, 0) / week.length;
-                    var digits = (rows[0][column].split(".")[1] || "").length;
+                    var digits = (done[0][column].split(".")[1] || "").length;
 
                     shade(add(row, "td", mean.toFixed(digits)), mean, nutrients[i]);
                     add(row, "td", nutrients[i][3]);
