@@ -58,6 +58,19 @@
         table.nutrients tr > *:nth-child(4) {
             text-align: left;
         }
+
+        table.nutrients td.sofar {
+            border-left-width: 2px;
+            border-right-width: 2px;
+        }
+
+        table.nutrients tr:nth-child(3) > td.sofar {
+            border-top-width: 2px;
+        }
+
+        table.nutrients tr:last-child > td.sofar {
+            border-bottom-width: 2px;
+        }
     </style>
 </head>
 
@@ -1161,12 +1174,15 @@
 
         var limits = ["salt_g"];
 
+        var sofar = "2026-10-16";
+
         fetch("/other/tables/food.csv?v=" + Date.now())
             .then(function (r) { return r.text(); })
             .then(function (text) {
                 var lines = text.trim().split(/\r?\n/);
                 var names = lines[0].split(",");
                 var rows = lines.slice(1).map(function (line) { return line.split(","); }).reverse();
+                var done = rows.filter(function (day) { return day[0] != sofar; });
                 var table = document.getElementById("nutrients");
 
                 function add(row, name, text) {
@@ -1210,7 +1226,7 @@
                     var column = names.indexOf(nutrients[i][0]);
                     var row = table.insertRow();
                     add(row, "td", nutrients[i][1]);
-                    var week = rows.slice(0, 7).map(function (day) { return Number(day[column]); });
+                    var week = done.slice(0, 7).map(function (day) { return Number(day[column]); });
                     var mean = week.reduce(function (a, b) { return a + b; }, 0) / week.length;
                     var digits = (rows[0][column].split(".")[1] || "").length;
 
@@ -1219,7 +1235,10 @@
                     add(row, "td", nutrients[i][2]);
 
                     for (var j = 0; j < rows.length; j++) {
-                        shade(add(row, "td", rows[j][column]), rows[j][column], nutrients[i]);
+                        var cell = add(row, "td", rows[j][column]);
+                        if (rows[j][0] == sofar) cell.className = "sofar";
+
+                        shade(cell, rows[j][column], nutrients[i]);
                     }
                 }
             });
