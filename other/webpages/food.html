@@ -109,6 +109,56 @@
     <h2>log</h2>
 
     <section>
+        <h3>2026-10-21</h3>
+
+        <ul>
+            <li>breakfast
+                <ul>
+                    <li>yesterday's maccheroni with pesto calabrese - 200 g</li>
+                    <li>sfouf - 1 slice</li>
+                </ul>
+            </li>
+            <li>lunch
+                <ul>
+                    <li>mensa - essen 2 - 1 plate
+                        <ul>
+                            <li>champignon-rahmsauce</li>
+                            <li>bauernspätzle</li>
+                            <li>brokkoligemüse</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>dinner
+                <ul>
+                    <li>rinder-entrecôte - 349 g raw
+                        <ul>
+                            <li>peanut oil</li>
+                            <li>butter</li>
+                        </ul>
+                    </li>
+                    <li>pasta with peppers - half the pan
+                        <ul>
+                            <li>yesterday's maccheroni with pesto calabrese</li>
+                            <li>bell peppers - 2 mid-sized 1 small</li>
+                            <li>butter from the steak pan</li>
+                        </ul>
+                    </li>
+                    <li>kiwi - 2 (160 g)</li>
+                </ul>
+            </li>
+            <li>snack
+                <ul>
+                    <li>espresso - 2</li>
+                    <li>vegan carrot cake - 1 slice</li>
+                    <li>katjes fred ferkel - 8</li>
+                    <li>trail mix - 1 mouthful</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section>
         <h3>2026-10-20</h3>
 
         <ul>
@@ -1188,6 +1238,8 @@
             ["2026-10-17", 3165, 3640, 86, 75],
             ["2026-10-18", 3775, 4340, 168, 146],
             ["2026-10-19", 2497, 2870, 100, 87],
+            ["2026-10-20", 2097, 2410, 99, 86],
+            ["2026-10-21", 3170, 3650, 157, 137],
         ];
 
         function chart(id, column, bound, target, unit) {
@@ -1335,7 +1387,7 @@
 
         var limits = ["salt_g"];
 
-        var sofar = "2026-10-20";
+        var sofar = "2026-10-22";
 
         fetch("/other/tables/food.csv?v=" + Date.now())
             .then(function (r) { return r.text(); })
